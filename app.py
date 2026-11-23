@@ -330,16 +330,18 @@ if modo == "👧 Área do aluno":
                                mime="text/plain", use_container_width=True)
             st.caption("Este resumo em texto pode ser salvo ou enviado ao professor. O PDF/imagem pode ser acrescentado em uma próxima versão.")
 
-        # Mensagens do professor para o aluno
-       if st.session_state.get("atividade_id") and supabase:
-        try:
-            atual = supabase.table("respostas_alunos").select("*").eq("id", st.session_state.atividade_id).limit(1).execute()
-            if atual.data:
-                item = atual.data[0]
-                if item.get("feedback_professor"):
-                    st.info("💬 Retorno do professor: " + item["feedback_professor"])
-                if item.get("missao_extra"):
-                    st.success("🚀 Sua missão extra: " + item["missao_extra"])
+      # Mensagens do professor para o aluno
+        if st.session_state.get("atividade_id") and supabase:
+            try:
+                atual = supabase.table("respostas_alunos").select("*").eq("id", st.session_state.atividade_id).limit(1).execute()
+                if atual.data:
+                    item = atual.data[0]
+                    if item.get("feedback_professor"):
+                        st.info("💬 Retorno do professor: " + item["feedback_professor"])
+                    if item.get("missao_extra"):
+                        st.success("🚀 Sua missão extra: " + item["missao_extra"])
+            except Exception:
+                pass
         except Exception:
             pass
 
