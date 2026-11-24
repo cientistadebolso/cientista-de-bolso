@@ -342,8 +342,7 @@ if modo == "👧 Área do aluno":
                         st.success("🚀 Sua missão extra: " + item["missao_extra"])
             except Exception:
                 pass
-        except Exception:
-            pass
+       
 
 elif modo == "👩‍🏫 Área do professor":
     st.title("👩‍🏫 Painel do professor")
